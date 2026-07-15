@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { categoryName, getProduct, productsByCategory } from "../data/catalog";
 import { useCart } from "../context/CartContext";
 import Placeholder from "../components/Placeholder";
 import ProductCard from "../components/ProductCard";
 import Carousel from "../components/Carousel";
+import StickyBuyBar from "../components/StickyBuyBar";
 import { StarRating } from "../components/Stars";
 import { STORE_OPEN } from "../config";
 
@@ -14,6 +15,8 @@ export default function Product() {
   const { add } = useCart();
   const [active, setActive] = useState(0);
   const [qty, setQty] = useState(1);
+  const touchStart = useRef<number | null>(null);
+  const buyAnchorRef = useRef<HTMLDivElement>(null);
 
   if (!product) {
     return (
@@ -31,6 +34,25 @@ export default function Product() {
   const gallery = [product.image, product.imageHover].filter(Boolean) as string[];
   const hasPhotos = gallery.length > 0;
   const thumbs = hasPhotos ? gallery : ["front", "detail", "in progress"];
+  const slideCount = thumbs.length;
+
+  const goTo = (index: number) => {
+    setActive(((index % slideCount) + slideCount) % slideCount);
+  };
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStart.current = e.touches[0].clientX;
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart.current === null || slideCount < 2) return;
+    const delta = e.changedTouches[0].clientX - touchStart.current;
+    touchStart.current = null;
+    if (Math.abs(delta) < 40) return;
+    goTo(active + (delta < 0 ? 1 : -1));
+  };
+
+  const handleAdd = () => add(product, qty);
 
   return (
     <div className="container">
@@ -52,11 +74,22 @@ export default function Product() {
           ))}
         </div>
 
-        <div className="pdp-main">
+        <div
+          className="pdp-main pdp-main--swipe"
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
           {hasPhotos ? (
             <img className="media-img" src={gallery[active] ?? gallery[0]} alt={product.name} />
           ) : (
             <Placeholder tone={product.categorySlug} label={`${product.name} — ${thumbs[active]}`} />
+          )}
+          {slideCount > 1 && (
+            <div className="pdp-dots" aria-hidden="true">
+              {thumbs.map((_, i) => (
+                <span key={i} className={`pdp-dot ${i === active ? "is-active" : ""}`} />
+              ))}
+            </div>
           )}
         </div>
 
@@ -98,7 +131,7 @@ export default function Product() {
           <div className="pdp-price">€{product.price}</div>
 
           {STORE_OPEN ? (
-            <div className="pdp-buy">
+            <div className="pdp-buy" ref={buyAnchorRef}>
               <div className="qty">
                 <button onClick={() => setQty((q) => Math.max(1, q - 1))} aria-label="Decrease">
                   −
@@ -108,10 +141,7 @@ export default function Product() {
                   +
                 </button>
               </div>
-              <button
-                className="btn btn--green btn--lg"
-                onClick={() => add(product, qty)}
-              >
+              <button className="btn btn--green btn--lg" onClick={handleAdd}>
                 Add to basket
               </button>
             </div>
@@ -128,7 +158,15 @@ export default function Product() {
         </div>
       </div>
 
-      {/* Reviews — hidden until there are real reviews to show */}
+      {STORE_OPEN && (
+        <StickyBuyBar
+          product={product}
+          qty={qty}
+          onAdd={handleAdd}
+          anchorRef={buyAnchorRef}
+        />
+      )}
+
       {product.reviews.length > 0 && (
         <section className="reviews">
           <h2>Reviews</h2>

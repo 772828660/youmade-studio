@@ -6,13 +6,18 @@ import {
   CartIcon,
   ChevronDown,
   HeartFlourish,
+  MenuIcon,
   SearchIcon,
 } from "./icons";
+import MobileNav from "./MobileNav";
+import SearchOverlay from "./SearchOverlay";
 
 export default function Header() {
   const { count } = useCart();
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const onSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +28,14 @@ export default function Header() {
     <header className="site-header">
       <div className="container">
         <div className="header-top">
+          <button
+            className="icon-btn header-menu-btn"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open menu"
+          >
+            <MenuIcon />
+          </button>
+
           <Link to="/" className="logo">
             <div>
               <span className="logo-main">youmade</span>
@@ -43,6 +56,13 @@ export default function Header() {
                 aria-label="Search"
               />
             </form>
+            <button
+              className="icon-btn header-search-btn"
+              onClick={() => setSearchOpen(true)}
+              aria-label="Search"
+            >
+              <SearchIcon />
+            </button>
             <Link to="/cart" className="icon-btn" aria-label="Basket">
               <CartIcon />
               {count > 0 && <span className="cart-count">{count}</span>}
@@ -80,6 +100,14 @@ export default function Header() {
           </ul>
         </div>
       </nav>
+
+      <MobileNav open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <SearchOverlay
+        open={searchOpen}
+        onClose={() => setSearchOpen(false)}
+        query={query}
+        onQueryChange={setQuery}
+      />
     </header>
   );
 }

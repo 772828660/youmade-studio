@@ -97,3 +97,15 @@ export const HeartFlourish = (p: IconProps) => (
     <path d="M12 20S4 14.5 4 9.2A3.8 3.8 0 0 1 12 7a3.8 3.8 0 0 1 8 2.2C20 14.5 12 20 12 20Z" />
   </svg>
 );
+
+export const MenuIcon = (p: IconProps) => (
+  <svg width="22" height="22" {...base} {...p}>
+    <path d="M4 7h16M4 12h16M4 17h16" />
+  </svg>
+);
+
+export const CloseIcon = (p: IconProps) => (
+  <svg width="22" height="22" {...base} {...p}>
+    <path d="m6 6 12 12M18 6 6 18" />
+  </svg>
+);
