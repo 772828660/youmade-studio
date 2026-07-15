@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { bestsellers, categories, products } from "../data/catalog";
+import { bestsellers, categories, communityMakes } from "../data/catalog";
 import Carousel from "../components/Carousel";
 import ProductCard from "../components/ProductCard";
 import Placeholder from "../components/Placeholder";
@@ -16,8 +16,6 @@ const TitleRule = () => (
     </svg>
   </span>
 );
-
-const community = products.slice(0, 8);
 
 export default function Home() {
   return (
@@ -126,12 +124,33 @@ export default function Home() {
           <p style={{ textAlign: "center", color: "var(--ink-soft)", marginTop: -12, marginBottom: 26 }}>
             Finished makes shared with #madebyyou
           </p>
+
           <div className="community-grid">
-            {community.map((p) => (
-              <div className="community-tile" key={p.id}>
-                <Placeholder tone={p.categorySlug} label={`@maker · ${p.name}`} />
-              </div>
-            ))}
+            {communityMakes.map((m) => {
+              const alt = m.caption ?? `Make by @${m.handle}`;
+              return (
+                <div className="community-tile" key={m.image}>
+                  {m.productSlug ? (
+                    <Link to={`/product/${m.productSlug}`} className="community-media">
+                      <img src={m.image} alt={alt} loading="lazy" />
+                      <span className="community-shop">Shop the kit</span>
+                    </Link>
+                  ) : (
+                    <div className="community-media">
+                      <img src={m.image} alt={alt} loading="lazy" />
+                    </div>
+                  )}
+                  <a
+                    href={`https://www.instagram.com/${m.handle}/`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="community-handle"
+                  >
+                    @{m.handle}
+                  </a>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

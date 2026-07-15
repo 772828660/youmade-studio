@@ -472,3 +472,21 @@ export function productsByCategory(slug: string): Product[] {
 }
 
 export const bestsellers = products.filter((p) => p.bestseller);
+
+export interface CommunityMake {
+  image: string; // finished make photo shared by a customer (with permission)
+  handle: string; // Instagram handle, without the @
+  productSlug?: string; // links the tile to the matching kit
+  caption?: string; // used as the image alt text
+}
+
+// Real customer makes shared with permission. Add new entries here and they
+// appear in the "From our community" gallery automatically.
+export const communityMakes: CommunityMake[] = [
+  {
+    image: "/community/xueweijiang_jan-fox.png",
+    handle: "xueweijiang_jan",
+    productSlug: "stargazer-fox-brooch",
+    caption: "Stargazer Fox brooch made by @xueweijiang_jan",
+  },
+];
