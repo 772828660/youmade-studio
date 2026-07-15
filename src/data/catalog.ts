@@ -137,7 +137,7 @@ export const products: Product[] = [
       "Soft pouch & little gift box",
     ],
     true,
-    "/products/clover-studs.png"
+    "/products/mother-of-pearl/clover-studs.png"
   ),
   build(
     "p17",
@@ -157,8 +157,8 @@ export const products: Product[] = [
       "Soft pouch & gift box",
     ],
     true,
-    "/products/mermaid-tail.png",
-    "/products/mermaid-tail-base.png"
+    "/products/mother-of-pearl/mermaid-tail.png",
+    "/products/mother-of-pearl/mermaid-tail-base.png"
   ),
   build(
     "p18",
@@ -178,8 +178,8 @@ export const products: Product[] = [
       "Soft pouch & gift box",
     ],
     true,
-    "/products/cactus.png",
-    "/products/cactus-base.png"
+    "/products/mother-of-pearl/cactus.png",
+    "/products/mother-of-pearl/cactus-base.png"
   ),
   build(
     "p19",
@@ -199,8 +199,8 @@ export const products: Product[] = [
       "Soft pouch & gift box",
     ],
     true,
-    "/products/fox.png",
-    "/products/fox-base.png"
+    "/products/mother-of-pearl/fox.png",
+    "/products/mother-of-pearl/fox-base.png"
   ),
   build(
     "p20",
@@ -220,8 +220,8 @@ export const products: Product[] = [
       "Soft pouch & gift box",
     ],
     true,
-    "/products/moon.png",
-    "/products/moon-base.png"
+    "/products/mother-of-pearl/moon.png",
+    "/products/mother-of-pearl/moon-base.png"
   ),
   build(
     "p04",
@@ -354,19 +354,84 @@ export const products: Product[] = [
     ["Stainless-steel tweezers", "Protective tip cap"]
   ),
   build(
-    "p13",
-    "Desktop Storage Box",
+    "p21",
+    "#69 Storage Box — 6 Compartments",
+    "accessories",
+    "Storage",
+    4,
+    "Beginner",
+    1,
+    0,
+    0,
+    "",
+    "Clear hinged-lid box for sorting mother-of-pearl shell flakes and tiny findings. Material: clear glass-like plastic. Overall size: 10.8 × 9.9 × 1.8 cm. Each compartment: 4.6 × 3.3 × 1.4 cm. Weight: 48 g.",
+    ["1 × clear compartment box with hinged lid"],
+    false,
+    "/products/accessories/storage/storage-box-69.png"
+  ),
+  build(
+    "p22",
+    "#72 Storage Box — 12 Compartments",
+    "accessories",
+    "Storage",
+    5,
+    "Beginner",
+    1,
+    0,
+    0,
+    "",
+    "Clear hinged-lid box for sorting mother-of-pearl shell flakes and tiny findings. Material: clear glass-like plastic. Overall size: 13 × 10.1 × 2 cm. Each compartment: 3 × 3 × 1.7 cm. Weight: 69 g.",
+    ["1 × clear compartment box with hinged lid"],
+    false,
+    "/products/accessories/storage/storage-box-72.png"
+  ),
+  build(
+    "p23",
+    "#73 Storage Box — 15 Compartments",
     "accessories",
     "Storage",
     6,
     "Beginner",
     1,
-    4.6,
-    44,
+    0,
+    0,
     "",
-    "Japanese-style compartment box that keeps beads, findings and shell pieces sorted and tidy on your desk.",
-    ["Clear compartment box", "Adjustable dividers"],
-    true
+    "Clear hinged-lid box for sorting mother-of-pearl shell flakes and tiny findings. Material: clear glass-like plastic. Overall size: 16.1 × 10.1 × 2 cm. Each compartment: 3 × 3 × 1.7 cm. Weight: 85 g.",
+    ["1 × clear compartment box with hinged lid"],
+    false,
+    "/products/accessories/storage/storage-box-73.png"
+  ),
+  build(
+    "p24",
+    "#74 Storage Box — 18 Compartments",
+    "accessories",
+    "Storage",
+    7,
+    "Beginner",
+    1,
+    0,
+    0,
+    "",
+    "Clear hinged-lid box for sorting mother-of-pearl shell flakes and tiny findings. Material: clear glass-like plastic. Overall size: 19.1 × 10.1 × 2 cm. Each compartment: 3 × 3 × 1.7 cm. Weight: 102 g.",
+    ["1 × clear compartment box with hinged lid"],
+    false,
+    "/products/accessories/storage/storage-box-74.png"
+  ),
+  build(
+    "p25",
+    "#78 Storage Box — 28 Compartments",
+    "accessories",
+    "Storage",
+    9,
+    "Beginner",
+    1,
+    0,
+    0,
+    "",
+    "Clear hinged-lid box for sorting mother-of-pearl shell flakes and tiny findings. Material: clear glass-like plastic. Overall size: 20 × 13.5 × 2.5 cm. Each compartment: 3.1 × 2.7 × 2.2 cm. Weight: 170 g.",
+    ["1 × clear compartment box with hinged lid"],
+    false,
+    "/products/accessories/storage/storage-box-78.png"
   ),
   build(
     "p14",
